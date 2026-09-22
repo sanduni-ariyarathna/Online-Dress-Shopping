@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Product Details | YOUR CHOICE OUR DRESS</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <!-- NAVBAR -->
+   <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="../image/logo.jpg.jpg" alt="logo"> 
+                <span>YOUR CHOICE OUR DRESS</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li> 
+                <li><a href="../shop.html" class="active">Shop</a></li>
+                <li><a href="../blog.html">Blog</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../cart.html">Cart 🛒 <span id="cart-count">0</span></a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SINGLE PRODUCT DETAILS -->
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <img src="../image/men2.jpg" id="MainImg" alt="Product Image">
+        </div>
+
+        <div class="single-pro-details">
+            <h4>Home / Shirt</h4>
+            <h2 id="product-name">Men's Fashion Shirt #2</h2>
+            <h3> Ethnic Printed Linen Shirt</h3>
+            <h3 id="product-price">Rs. 2,450.00</h3>
+            
+            <select id="product-size">
+                <option>Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+            </select>
+            <input type="number" id="product-qty" value="1" min="1">
+            <button onclick="addToCartFromProduct()">Add To Cart</button>
+            
+            <h4 style="margin-top: 30px;">Product Details</h4>
+            <span id="product-desc">
+                Stand out with this unique Ethnic Printed Linen Shirt. Earthy brown base with bold tribal border print on one side. 
+                Perfect for parties, events and cultural gatherings. Relaxed fit and airy fabric keeps you cool.
+            </span><span>    
+                <br><B>Features: </B></br>
+                 <br>Fabric: Premium Linen Feel</br>
+                 <br>Fit: Relaxed / Casual Fit</br>
+                 <br> Occasion:  Party, Event, Day Out </br> 
+                 <br>Detail: Contrast Pocket + Border Design</br>
+            </span>
+        </div>
+    </section>
+
+   <!-- FOOTER -  -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>YOUR CHOICE OUR DRESS offers stylish and diverse collection of dresses designed to make everyone feel confident and beautiful.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Useful Links</h3>
+                <ul>
+                   <li><a href="../index.html">Home</a></li>
+                   <li><a href="../shop.html">Shop</a></li>
+                   <li><a href="../contact.html">Contact Us</a></li>
+                   <li><a href="../about.html">About Us</a></li>
+                   <li><a href="../blog.html">Blog page</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <p>Email: SMshop@dress.com</p>
+                <p>Phone: +94 765468943</p>
+                <p>Address: 1/3, Main Street, Kandy.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SM Website | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script> 
+    <script>
+        
+        function addToCartFromProduct(){
+            let name = document.getElementById('product-name').innerText;
+            let price = parseFloat(document.getElementById('product-price').innerText.replace('Rs. ', '').replace(',', ''));
+            let image = document.getElementById('MainImg').src;
+            let size = document.getElementById('product-size').value;
+            let qty = parseInt(document.getElementById('product-qty').value);
+
+            if(size === "Select Size"){
+                alert("Please Select a Size!");
+                return;
+            }
+
+            let existing = cart.find(item => item.name === name && item.size === size);
+            if(existing){
+                existing.qty += qty;
+            } else {
+                cart.push({name, price, image, size, qty});
+            }
+            saveCart();
+            updateCartCount();
+
+           
+            alert(name + " size: " + size + " x " + qty + " added to cart!");
+            
+            
+            window.location.href = "../cart.html";
+        }
+    </script>
+</body>
+</html>
